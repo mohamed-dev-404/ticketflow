@@ -8,6 +8,9 @@ class Routes {
   static const String login = '/login';
   static const String register = '/register';
 
-  //* Main routes
-  static const String main = '/main';
+  //* home routes
+  static const String home = '/home';
+
+  //* Ticket Form routes
+  static const String ticketForm = '/ticket-form';
 }
