@@ -7,11 +7,11 @@ class MainButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.onPressed,
-    this.bgColor = AppColors.navy,
+    this.bgColor = AppColors.primary,
     this.borderColor,
     this.minWidth = double.infinity,
     this.minHeight = 41,
-    this.textColor = AppColors.white,
+    this.textColor = AppColors.background,
     this.isLoading = false,
   });
   final String text;
@@ -50,7 +50,7 @@ class MainButton extends StatelessWidget {
           //todo: text hint style
           : Text(
               text,
-              style: AppStyles.buttonLarge.copyWith(
+              style: AppStyles.bold15.copyWith(
                 color: textColor,
                 fontWeight: FontWeight.bold,
               ),

@@ -71,12 +71,12 @@ class AppDialogs {
     void Function()? onTap,
     void Function()? onNoTap,
   }) {
-    // Resolve the icon color — defaults to secondary (teal).
-    final resolvedIconColor = iconColor ?? AppColors.orange;
+    // Resolve the icon color — defaults to secondary.
+    final resolvedIconColor = iconColor ?? AppColors.secondary;
 
     showDialog(
       context: context,
-      barrierColor: AppColors.navy.withValues(alpha: 0.45),
+      barrierColor: AppColors.textPrimary.withValues(alpha: 0.45),
       builder: (BuildContext dialogContext) {
         return Dialog(
           elevation: 0,
@@ -85,12 +85,12 @@ class AppDialogs {
           child: Container(
             constraints: const BoxConstraints(maxWidth: 380),
             decoration: BoxDecoration(
-              color: AppColors.white,
+              color: Colors.white,
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: AppColors.lightGray, width: 1),
+              border: Border.all(color: AppColors.border, width: 1),
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.navy.withValues(alpha: 0.12),
+                  color: AppColors.textPrimary.withValues(alpha: 0.12),
                   blurRadius: 24,
                   offset: const Offset(0, 8),
                 ),
@@ -119,8 +119,8 @@ class AppDialogs {
                   Text(
                     title,
                     textAlign: TextAlign.center,
-                    style: AppStyles.labelLarge.copyWith(
-                      color: AppColors.navy,
+                    style: AppStyles.bold16.copyWith(
+                      color: AppColors.textPrimary,
                     ),
                   ),
 
@@ -130,8 +130,8 @@ class AppDialogs {
                     Text(
                       subtitle,
                       textAlign: TextAlign.center,
-                      style: AppStyles.bodyMedium.copyWith(
-                        color: AppColors.gray,
+                      style: AppStyles.regular14.copyWith(
+                        color: AppColors.textSecondary,
                         height: 1.45,
                       ),
                     ),
@@ -153,7 +153,7 @@ class AppDialogs {
                                     () => Navigator.pop(dialogContext),
                                 style: OutlinedButton.styleFrom(
                                   side: const BorderSide(
-                                    color: AppColors.lightGray,
+                                    color: AppColors.border,
                                     width: 1.2,
                                   ),
                                   shape: RoundedRectangleBorder(
@@ -162,8 +162,8 @@ class AppDialogs {
                                 ),
                                 child: Text(
                                   no,
-                                  style: AppStyles.buttonLarge.copyWith(
-                                    color: AppColors.gray,
+                                  style: AppStyles.bold15.copyWith(
+                                    color: AppColors.textSecondary,
                                   ),
                                 ),
                               ),
@@ -181,7 +181,7 @@ class AppDialogs {
                               child: ElevatedButton(
                                 onPressed: onTap,
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: AppColors.navy,
+                                  backgroundColor: AppColors.textPrimary,
                                   foregroundColor: Colors.white,
                                   elevation: 0,
                                   shape: RoundedRectangleBorder(
@@ -190,7 +190,7 @@ class AppDialogs {
                                 ),
                                 child: Text(
                                   ok,
-                                  style: AppStyles.buttonLarge.copyWith(
+                                  style: AppStyles.bold15.copyWith(
                                     color: Colors.white,
                                   ),
                                 ),

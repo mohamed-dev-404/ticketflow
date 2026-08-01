@@ -21,4 +21,15 @@ enum TicketCategory {
         return 'GEN';
     }
   }
+
+  String get label {
+    switch (this) {
+      case TicketCategory.technical:
+        return 'Technical';
+      case TicketCategory.billing:
+        return 'Billing';
+      case TicketCategory.general:
+        return 'General';
+    }
+  }
 }

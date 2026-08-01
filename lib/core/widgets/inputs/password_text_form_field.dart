@@ -62,7 +62,7 @@ class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
           icon: Icon(
             obscureText ? AppIcons.eyeOffIcon : AppIcons.eyeIcon,
             size: 20,
-            color: AppColors.navy,
+            color: AppColors.slate600,
           ),
         ),
       ),
