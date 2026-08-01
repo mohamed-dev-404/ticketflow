@@ -17,6 +17,7 @@ class AppTextFormField extends StatelessWidget {
     this.textInputAction,
     this.controller,
     this.suffixIcon,
+    this.maxLines = 1,
   });
 
   final String? hintText;
@@ -31,6 +32,7 @@ class AppTextFormField extends StatelessWidget {
   final TextInputAction? textInputAction;
   final TextEditingController? controller;
   final Widget? suffixIcon;
+  final int? maxLines;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -39,6 +41,7 @@ class AppTextFormField extends StatelessWidget {
       readOnly: readOnly,
       focusNode: focusNode,
       textInputAction: textInputAction,
+      maxLines: maxLines,
       inputFormatters: [
         if (keyboardType == TextInputType.phone) ...[
           LengthLimitingTextInputFormatter(11),

@@ -20,7 +20,7 @@ class InputIcon extends StatelessWidget {
         path: path,
         width: 20,
         height: 20,
-        color: color ?? AppColors.gray,
+        color: color ?? AppColors.slate400,
       ),
     );
   }
