@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:ticketflow/core/utils/themes/app_themes.dart';
+import 'package:ticketflow/core/utils/themes/app_theme.dart';
 import 'package:ticketflow/core/routes/app_router.dart';
 
 class Ticketflow extends StatelessWidget {
@@ -12,7 +12,7 @@ class Ticketflow extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: AppRouter.router,
-      theme: AppThemes.lightTheme,
+      theme: AppTheme.lightTheme,
       themeMode: ThemeMode.light,
       builder: (context, child) {
         return MediaQuery(
