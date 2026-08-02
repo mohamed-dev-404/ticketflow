@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:ticketflow/core/utils/colors/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:ticketflow/core/utils/styles/app_styles.dart';
 
 /// Available SnackBar message types.
 /// Each type controls the color and icon.
@@ -92,9 +93,7 @@ class AppSnackBar {
                     Expanded(
                       child: Text(
                         text,
-                        style: Theme.of(
-                          context,
-                        ).textTheme.bodyMedium?.copyWith(color: Colors.white),
+                        style: AppStyles.medium14.copyWith(color: Colors.white),
                       ),
                     ),
                   ],

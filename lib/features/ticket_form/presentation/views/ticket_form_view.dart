@@ -11,6 +11,7 @@ import 'package:ticketflow/core/validators/app_validators.dart';
 import 'package:ticketflow/core/widgets/buttons/main_button.dart';
 import 'package:ticketflow/core/widgets/inputs/app_text_form_field.dart';
 import 'package:ticketflow/core/widgets/my_body_view.dart';
+import 'package:ticketflow/core/routes/navigations_helper.dart';
 import 'package:ticketflow/features/ticket_form/presentation/view_models/ticket_form_cubit/ticket_form_cubit.dart';
 import 'package:ticketflow/features/ticket_form/presentation/view_models/ticket_form_cubit/ticket_form_state.dart';
 import 'package:ticketflow/features/ticket_form/presentation/views/widgets/category_selector.dart';
@@ -41,6 +42,7 @@ class _TicketFormViewState extends State<TicketFormView> {
   TicketPriority _selectedPriority = TicketPriority.low;
   TicketCategory _selectedCategory = TicketCategory.technical;
   TicketStatus _selectedStatus = TicketStatus.open;
+  TicketModel? _pendingUpdatedTicket;
 
   /// Used as a key for selectors to force rebuild on add-mode success reset.
   int _selectorResetKey = 0;
@@ -78,14 +80,14 @@ class _TicketFormViewState extends State<TicketFormView> {
     final cubit = context.read<TicketFormCubit>();
 
     if (_isEdit) {
-      final updatedTicket = _ticket!.copyWith(
+      _pendingUpdatedTicket = _ticket!.copyWith(
         subject: _subjectController.text.trim(),
         description: _descriptionController.text.trim(),
         priority: _selectedPriority,
         category: _selectedCategory,
         status: _selectedStatus,
       );
-      cubit.updateTicket(updatedTicket);
+      cubit.updateTicket(_pendingUpdatedTicket!);
     } else {
       cubit.addTicket(
         subject: _subjectController.text.trim(),
@@ -125,6 +127,8 @@ class _TicketFormViewState extends State<TicketFormView> {
             AppSnackBar.success(context, state.successMessage);
             if (!_isEdit) {
               _resetForm();
+            } else {
+              pop(context, _pendingUpdatedTicket);
             }
           } else if (state is TicketFormFailure) {
             AppSnackBar.error(context, state.errorMessage);

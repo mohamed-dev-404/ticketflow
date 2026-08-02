@@ -1,6 +1,16 @@
-part of 'ticket_cubit.dart';
+import 'package:flutter/foundation.dart';
 
 @immutable
-sealed class TicketState {}
+abstract class TicketState {}
 
-final class TicketInitial extends TicketState {}
+class TicketInitial extends TicketState {}
+
+class TicketLoading extends TicketState {}
+
+class TicketSuccess extends TicketState {}
+
+class TicketFailure extends TicketState {
+  final String errorMessage;
+
+  TicketFailure(this.errorMessage);
+}
