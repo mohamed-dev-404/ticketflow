@@ -6,6 +6,16 @@ import 'package:ticketflow/features/ticket_form/data/data_sources/ticket_form_lo
 import 'package:ticketflow/features/ticket_form/data/repos/ticket_form_repo.dart';
 import 'package:ticketflow/features/ticket_form/data/repos/ticket_form_repo_impl.dart';
 import 'package:ticketflow/features/ticket_form/presentation/view_models/ticket_form_cubit/ticket_form_cubit.dart';
+import 'package:ticketflow/features/dashboard/data/data_sources/dashboard_local_data_source.dart';
+import 'package:ticketflow/features/dashboard/data/data_sources/dashboard_local_data_source_impl.dart';
+import 'package:ticketflow/features/dashboard/data/repos/dashboard_repo.dart';
+import 'package:ticketflow/features/dashboard/data/repos/dashboard_repo_impl.dart';
+import 'package:ticketflow/features/dashboard/presentation/view_models/dashboard_cubit/dashboard_cubit.dart';
+import 'package:ticketflow/features/tickets/data/data_sources/ticket_local_data_source.dart';
+import 'package:ticketflow/features/tickets/data/data_sources/ticket_local_data_source_impl.dart';
+import 'package:ticketflow/features/tickets/data/repos/tickets_repo.dart';
+import 'package:ticketflow/features/tickets/data/repos/tickets_repo_impl.dart';
+import 'package:ticketflow/features/tickets/presentation/view_models/ticket_cubit/ticket_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -18,22 +28,6 @@ void setupServiceLocator() {
   //! shared network services
   getIt.registerLazySingleton<Dio>(() => Dio());
   getIt.registerLazySingleton<ApiConsumer>(() => DioConsumer(getIt<Dio>()));
-
-  //! Auth Feature
-
-  //? Repo
-  // getIt.registerLazySingleton<AuthRepo>(
-  //   () => AuthRepoImpl(getIt<ApiConsumer>()),
-  // );
-
-  //? Cubits
-  // getIt.registerFactory<LoginCubit>(
-  //   () => LoginCubit(authRepo: getIt<AuthRepo>()),
-  // );
-  // getIt.registerFactory<RegisterCubit>(
-  //   () => RegisterCubit(authRepo: getIt<AuthRepo>()),
-  // );
-  // getIt.registerFactory<LogoutCubit>(() => LogoutCubit(getIt<AuthRepo>()));
 
   //! Ticket Form Feature
 
@@ -50,5 +44,39 @@ void setupServiceLocator() {
   //? Cubit
   getIt.registerFactory<TicketFormCubit>(
     () => TicketFormCubit(getIt<TicketFormRepository>()),
+  );
+
+  //! Tickets Feature
+
+  //? Data Source
+  getIt.registerLazySingleton<TicketLocalDataSource>(
+    () => TicketLocalDataSourceImpl(HiveService.instance),
+  );
+
+  //? Repo
+  getIt.registerLazySingleton<TicketsRepository>(
+    () => TicketsRepositoryImpl(getIt<TicketLocalDataSource>()),
+  );
+
+  //? Cubit
+  getIt.registerFactory<TicketCubit>(
+    () => TicketCubit(getIt<TicketsRepository>()),
+  );
+
+  //! Dashboard Feature
+
+  //? Data Source
+  getIt.registerLazySingleton<DashboardLocalDataSource>(
+    () => DashboardLocalDataSourceImpl(HiveService.instance),
+  );
+
+  //? Repo
+  getIt.registerLazySingleton<DashboardRepository>(
+    () => DashboardRepositoryImpl(getIt<DashboardLocalDataSource>()),
+  );
+
+  //? Cubit
+  getIt.registerFactory<DashboardCubit>(
+    () => DashboardCubit(getIt<DashboardRepository>()),
   );
 }
