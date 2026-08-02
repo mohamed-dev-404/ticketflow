@@ -13,4 +13,7 @@ class Routes {
 
   //* Ticket Form routes
   static const String ticketForm = '/ticket-form';
+
+  //* Ticket Details routes
+  static const String ticketDetails = '/ticket-details';
 }
