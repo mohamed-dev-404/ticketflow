@@ -4,11 +4,14 @@ import 'package:go_router/go_router.dart';
 import 'package:ticketflow/core/di/service_locator.dart';
 import 'package:ticketflow/core/routes/routes.dart';
 import 'package:ticketflow/features/home/presentation/views/home_view.dart';
+import 'package:ticketflow/features/splash/splash_view.dart';
 import 'package:ticketflow/features/ticket_form/presentation/view_models/ticket_form_cubit/ticket_form_cubit.dart';
 import 'package:ticketflow/features/ticket_form/presentation/views/ticket_form_view.dart';
 import 'package:ticketflow/features/dashboard/presentation/view_models/dashboard_cubit/dashboard_cubit.dart';
-import 'package:ticketflow/features/tickets/data/models/ticket_model.dart';
+import 'package:ticketflow/core/models/ticket_model.dart';
 import 'package:ticketflow/features/tickets/presentation/view_models/ticket_cubit/ticket_cubit.dart';
+import 'package:ticketflow/features/search/presentation/view_models/search_cubit/search_cubit.dart';
+import 'package:ticketflow/features/search/presentation/views/search_view.dart';
 
 import 'package:ticketflow/features/tickets/presentation/views/ticket_details.dart';
 
@@ -19,16 +22,13 @@ class AppRouter {
       GlobalKey<NavigatorState>();
 
   static final router = GoRouter(
-    initialLocation: Routes.home,
+    initialLocation: Routes.splash,
     routes: [
       //* Splash view
-      // GoRoute(
-      //   path: Routes.splash,
-      //   builder: (context, state) => BlocProvider(
-      //     create: (context) => getIt<SplashCubit>()..getInitData(),
-      //     child: const SplashView(),
-      //   ),
-      // ),
+      GoRoute(
+        path: Routes.splash,
+        builder: (context, state) => const SplashView(),
+      ),
 
       //* Home view
       GoRoute(
@@ -44,6 +44,25 @@ class AppRouter {
             ),
           ],
           child: const HomeView(),
+        ),
+      ),
+
+      //* Search view
+      GoRoute(
+        path: Routes.search,
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => getIt<SearchCubit>(),
+            ),
+            BlocProvider(
+              create: (context) => getIt<TicketCubit>(),
+            ),
+            BlocProvider(
+              create: (context) => getIt<DashboardCubit>(),
+            ),
+          ],
+          child: const SearchView(),
         ),
       ),
 

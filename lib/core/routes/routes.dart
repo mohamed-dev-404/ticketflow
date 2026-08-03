@@ -11,6 +11,9 @@ class Routes {
   //* home routes
   static const String home = '/home';
 
+  //* Search route
+  static const String search = '/search';
+
   //* Ticket Form routes
   static const String ticketForm = '/ticket-form';
 
