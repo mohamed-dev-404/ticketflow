@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:ticketflow/features/tickets/data/models/ticket_model.dart';
+import 'package:ticketflow/core/models/ticket_model.dart';
 
 abstract class TicketFormRepository {
   Future<Either<String, Unit>> addTicket(TicketModel ticket);

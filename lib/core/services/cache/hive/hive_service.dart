@@ -1,7 +1,7 @@
 import 'package:hive_ce_flutter/hive_ce_flutter.dart';
 import 'package:ticketflow/core/services/cache/hive/hive_keys.dart';
 import 'package:ticketflow/core/logging/app_logger.dart';
-import 'package:ticketflow/features/tickets/data/models/ticket_model.dart';
+import 'package:ticketflow/core/models/ticket_model.dart';
 import 'package:ticketflow/hive_registrar.g.dart';
 
 ///! ===================================================

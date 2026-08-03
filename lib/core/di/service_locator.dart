@@ -11,6 +11,11 @@ import 'package:ticketflow/features/dashboard/data/data_sources/dashboard_local_
 import 'package:ticketflow/features/dashboard/data/repos/dashboard_repo.dart';
 import 'package:ticketflow/features/dashboard/data/repos/dashboard_repo_impl.dart';
 import 'package:ticketflow/features/dashboard/presentation/view_models/dashboard_cubit/dashboard_cubit.dart';
+import 'package:ticketflow/features/search/data/data_sources/search_local_data_source.dart';
+import 'package:ticketflow/features/search/data/data_sources/search_local_data_source_impl.dart';
+import 'package:ticketflow/features/search/data/repos/search_repo.dart';
+import 'package:ticketflow/features/search/data/repos/search_repo_impl.dart';
+import 'package:ticketflow/features/search/presentation/view_models/search_cubit/search_cubit.dart';
 import 'package:ticketflow/features/tickets/data/data_sources/ticket_local_data_source.dart';
 import 'package:ticketflow/features/tickets/data/data_sources/ticket_local_data_source_impl.dart';
 import 'package:ticketflow/features/tickets/data/repos/tickets_repo.dart';
@@ -61,6 +66,23 @@ void setupServiceLocator() {
   //? Cubit
   getIt.registerFactory<TicketCubit>(
     () => TicketCubit(getIt<TicketsRepository>()),
+  );
+
+  //! Search Feature
+
+  //? Data Source
+  getIt.registerLazySingleton<SearchLocalDataSource>(
+    () => SearchLocalDataSourceImpl(HiveService.instance),
+  );
+
+  //? Repo
+  getIt.registerLazySingleton<SearchRepository>(
+    () => SearchRepositoryImpl(getIt<SearchLocalDataSource>()),
+  );
+
+  //? Cubit
+  getIt.registerFactory<SearchCubit>(
+    () => SearchCubit(getIt<SearchRepository>()),
   );
 
   //! Dashboard Feature

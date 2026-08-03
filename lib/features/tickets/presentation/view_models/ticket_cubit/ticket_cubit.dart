@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:ticketflow/features/tickets/data/models/ticket_model.dart';
+import 'package:ticketflow/core/models/ticket_model.dart';
 import 'package:ticketflow/features/tickets/data/repos/tickets_repo.dart';
 
 import 'ticket_state.dart';

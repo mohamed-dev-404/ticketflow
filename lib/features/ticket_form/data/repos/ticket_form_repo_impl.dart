@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:ticketflow/core/errors/exceptions/app_exception.dart';
 import 'package:ticketflow/features/ticket_form/data/data_sources/ticket_form_local_data_source.dart';
 import 'package:ticketflow/features/ticket_form/data/repos/ticket_form_repo.dart';
-import 'package:ticketflow/features/tickets/data/models/ticket_model.dart';
+import 'package:ticketflow/core/models/ticket_model.dart';
 
 class TicketFormRepositoryImpl implements TicketFormRepository {
   final TicketFormLocalDataSource _localDataSource;

@@ -8,9 +8,10 @@ import 'package:ticketflow/core/utils/styles/app_styles.dart';
 import 'package:ticketflow/core/widgets/cards/priority_chip.dart';
 import 'package:ticketflow/core/widgets/cards/status_chip.dart';
 import 'package:ticketflow/features/dashboard/presentation/view_models/dashboard_cubit/dashboard_cubit.dart';
-import 'package:ticketflow/features/tickets/data/models/ticket_model.dart';
+import 'package:ticketflow/core/models/ticket_model.dart';
 import 'package:ticketflow/features/tickets/presentation/view_models/ticket_cubit/ticket_cubit.dart';
 import 'package:ticketflow/features/tickets/presentation/views/widgets/ticket_category_chip.dart';
+import 'package:ticketflow/features/search/presentation/view_models/search_cubit/search_cubit.dart';
 
 class TicketCard extends StatelessWidget {
   const TicketCard({super.key, required this.ticket});
@@ -26,6 +27,10 @@ class TicketCard extends StatelessWidget {
         if (context.mounted) {
           context.read<TicketCubit>().getAllTickets();
           context.read<DashboardCubit>().getDashboardStatistics();
+          try {
+            final searchCubit = context.read<SearchCubit>();
+            searchCubit.onQueryChanged(searchCubit.currentQuery);
+          } catch (_) {}
         }
       },
       child: Container(

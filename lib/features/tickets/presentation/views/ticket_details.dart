@@ -7,9 +7,10 @@ import 'package:ticketflow/core/routes/navigations_helper.dart';
 import 'package:ticketflow/core/routes/routes.dart';
 import 'package:ticketflow/core/utils/colors/app_colors.dart';
 import 'package:ticketflow/core/utils/styles/app_styles.dart';
+import 'package:ticketflow/core/utils/themes/app_shadows.dart';
 import 'package:ticketflow/core/widgets/cards/priority_chip.dart';
 import 'package:ticketflow/core/widgets/cards/status_chip.dart';
-import 'package:ticketflow/features/tickets/data/models/ticket_model.dart';
+import 'package:ticketflow/core/models/ticket_model.dart';
 import 'package:ticketflow/features/tickets/presentation/view_models/ticket_cubit/ticket_cubit.dart';
 import 'package:ticketflow/features/tickets/presentation/view_models/ticket_cubit/ticket_state.dart';
 import 'package:ticketflow/features/tickets/presentation/views/widgets/ticket_category_chip.dart';
@@ -112,8 +113,29 @@ class _TicketDetailsState extends State<TicketDetails> {
 
   AppBar _buildAppBar(BuildContext context) {
     return AppBar(
+      leadingWidth: 100,
+      toolbarHeight: 70,
+      leading: InkWell(
+        borderRadius: BorderRadius.circular(999),
+        onTap: () => pop(context),
+        child: Container(
+          margin: const EdgeInsets.all(12),
+          padding: const EdgeInsets.all(12),
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            shape: BoxShape.circle,
+            boxShadow: AppShadows.sm,
+          ),
+          child: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: AppColors.primary,
+            size: 24,
+          ),
+        ),
+      ),
       title: const Text('Ticket Details'),
       centerTitle: true,
+      backgroundColor: AppColors.background,
       actions: [
         IconButton(
           onPressed: _onEditTicket,

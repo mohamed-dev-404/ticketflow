@@ -3,7 +3,7 @@ import 'package:ticketflow/core/enums/ticket_category.dart';
 import 'package:ticketflow/core/enums/ticket_priority.dart';
 import 'package:ticketflow/core/enums/ticket_status.dart';
 import 'package:ticketflow/features/ticket_form/data/repos/ticket_form_repo.dart';
-import 'package:ticketflow/features/tickets/data/models/ticket_model.dart';
+import 'package:ticketflow/core/models/ticket_model.dart';
 import 'package:uuid/uuid.dart';
 
 import 'ticket_form_state.dart';
