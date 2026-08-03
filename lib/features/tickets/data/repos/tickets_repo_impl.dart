@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:ticketflow/core/errors/exceptions/app_exception.dart';
 import 'package:ticketflow/features/tickets/data/data_sources/ticket_local_data_source.dart';
-import 'package:ticketflow/features/tickets/data/models/ticket_model.dart';
+import 'package:ticketflow/core/models/ticket_model.dart';
 import 'package:ticketflow/features/tickets/data/repos/tickets_repo.dart';
 
 class TicketsRepositoryImpl implements TicketsRepository {

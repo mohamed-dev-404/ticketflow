@@ -1,4 +1,4 @@
-import 'package:ticketflow/features/tickets/data/models/ticket_model.dart';
+import 'package:ticketflow/core/models/ticket_model.dart';
 import 'package:ticketflow/core/services/cache/hive/hive_service.dart';
 import 'package:ticketflow/features/ticket_form/data/data_sources/ticket_form_local_data_source.dart';
 import 'package:ticketflow/core/errors/exceptions/cache_exception.dart';

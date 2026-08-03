@@ -6,6 +6,7 @@ import 'package:ticketflow/core/enums/ticket_priority.dart';
 import 'package:ticketflow/core/enums/ticket_status.dart';
 import 'package:ticketflow/core/utils/colors/app_colors.dart';
 import 'package:ticketflow/core/utils/styles/app_styles.dart';
+import 'package:ticketflow/core/utils/themes/app_shadows.dart';
 import 'package:ticketflow/core/utils/themes/app_spacing.dart';
 import 'package:ticketflow/core/validators/app_validators.dart';
 import 'package:ticketflow/core/widgets/buttons/main_button.dart';
@@ -17,7 +18,7 @@ import 'package:ticketflow/features/ticket_form/presentation/view_models/ticket_
 import 'package:ticketflow/features/ticket_form/presentation/views/widgets/category_selector.dart';
 import 'package:ticketflow/features/ticket_form/presentation/views/widgets/priority_selector.dart';
 import 'package:ticketflow/features/ticket_form/presentation/views/widgets/status_selector.dart';
-import 'package:ticketflow/features/tickets/data/models/ticket_model.dart';
+import 'package:ticketflow/core/models/ticket_model.dart';
 
 class TicketFormView extends StatefulWidget {
   final bool isEdit;
@@ -114,11 +115,32 @@ class _TicketFormViewState extends State<TicketFormView> {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
+        centerTitle: true,
+        leadingWidth: 100,
+        toolbarHeight: 70,
+        leading: InkWell(
+          borderRadius: BorderRadius.circular(999),
+          onTap: () => pop(context),
+          child: Container(
+            margin: const EdgeInsets.all(12),
+            padding: const EdgeInsets.all(12),
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+              boxShadow: AppShadows.sm,
+            ),
+            child: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: AppColors.primary,
+              size: 24,
+            ),
+          ),
+        ),
         title: Text(
           _isEdit ? 'Edit Ticket' : 'Create Support Ticket',
           style: AppStyles.bold16,
         ),
-        backgroundColor: AppColors.surface,
+        backgroundColor: AppColors.background,
         surfaceTintColor: Colors.transparent,
       ),
       body: BlocListener<TicketFormCubit, TicketFormState>(
@@ -152,7 +174,8 @@ class _TicketFormViewState extends State<TicketFormView> {
                   const SizedBox(height: AppSpacing.xs),
                   AppTextFormField(
                     controller: _subjectController,
-                    hintText: 'Summarize your issue (e.g., VPN Authentication...)',
+                    hintText:
+                        'Summarize your issue (e.g., VPN Authentication...)',
                     prefixIcon: const Icon(Icons.title),
                     textInputAction: TextInputAction.next,
                     validator: AppValidators.validateSubject,
